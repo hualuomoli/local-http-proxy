@@ -55,10 +55,6 @@ function getArgs() {
 function collectArguments(args) {
   var argvs = {};
   for (var i = 0; i < args.length; i += 2) {
-    if (args[i].lastIndexOf('--', 0) !== 0) {
-      --i;
-      continue;
-    }
     argvs[args[i].substring(2)] = args[i + 1];
   }
   return argvs;
