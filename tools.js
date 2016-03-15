@@ -7,39 +7,33 @@ var https = require('https');
 var colors = require('colors');
 
 var tools = {
-  // args 		arguments
-  // cachePath 	cache file path
+  // args        arguments
+  // cachePath   cache file path
 };
 
 // init
 tools.init = function () {
   createCachPath();
-}
+};
 
-/**
- * get file. 
- * if the cache has file, return it
- * if there no file in cache, download it and cache
- * @param  url 		cache file resource
- * @param  res 		http response
- */
+// get file
 tools.getFile = function (url, res) {
   url = url.substring(1);
   console.log('url:  '.cyan + url);
   var encrypt = new Buffer(url).toString("base64");
   var cacheFile = path.join(getCachePath(), encrypt);
 
-  console.log('file: '.cyan + encrypt)
+  console.log('file: '.cyan + encrypt);
 
   if (!fs.existsSync(cacheFile)) {
-    console.log('get file from network.'.green)
+    console.log('get file from network.'.green);
     return loadAndSaveFile(url, cacheFile, res);
   } else {
-    console.log('get file from local cache.'.green)
+    console.log('get file from local cache.'.green);
     return outFile(cacheFile, res);
   }
 
-}
+};
 
 module.exports = tools;
 

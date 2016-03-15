@@ -8,7 +8,7 @@ app.get('/abc', function (req, res) {
   // fs.readFile('D:/FlashFXP.zip', function (err, datas) {
   //   res.send(datas);
   // });
-  console.log('redirect to /test/1234')
+  console.log('redirect to /test/1234');
   res.redirect('http://localhost:1000/test/1234');
 });
 
@@ -18,6 +18,6 @@ app.get('/test/*', function (req, res) {
   });
 });
 
-var server = app.listen(1000, function (req, res) {
-  console.log('server started in 1000.')
+var server = app.listen(1000, function () {
+  console.log('server started in 1000.');
 });

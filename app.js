@@ -28,6 +28,6 @@ httpProxy.createProxyServer({
   target: 'http://localhost:9000'
 }).listen(8000); // See (†)
 
-var server = app.listen(9000, function (req, res) {
+var server = app.listen(9000, function () {
   console.log('server started in '.green + 9000);
 });
