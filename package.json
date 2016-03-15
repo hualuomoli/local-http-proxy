@@ -1,0 +1,27 @@
+{
+  "name": "local-http-proxy",
+  "version": "1.0.0",
+  "description": "http local proxy",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.coding.net/hualuomoli/local-http-proxy.git"
+  },
+  "keywords": [
+    "http",
+    "local",
+    "proxy"
+  ],
+  "author": "hualuomoli",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "http-proxy": "^1.13.2",
+    "https": "^1.0.0",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {}
+}
