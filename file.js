@@ -2,6 +2,9 @@ var fs = require('fs');
 var path = require('path');
 var colors = require('colors');
 
+var logger = require('./logger');
+
+// 
 var file = {
   // filepath   
   filepath: path.join(process.cwd(), '.cache')
@@ -35,7 +38,7 @@ module.exports = file;
 //
 function createPath() {
   if (!fs.existsSync(file.filepath)) {
-    console.log('create path %s', file.filepath);
+    logger.info('create path '.green + file.filepath);
     return fs.mkdirSync(file.filepath);
   }
 }

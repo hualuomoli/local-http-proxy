@@ -3,15 +3,19 @@ var request = require('request');
 var ProgressBar = require('progress');
 // 
 var file = require('./file');
+var logger = require('./logger');
 
+// 
 var load = {};
 
 load.download = function (archiveUrl, response) {
 
+  logger.debug('downloading '.green + archiveUrl);
+
   var filename = new Buffer(archiveUrl).toString("base64");
 
   if (file.exists(filename)) {
-    console.log('load file from local cache.');
+    logger.debug('load file from local cache.');
     return file.flush(filename, response);
   }
 
@@ -38,7 +42,7 @@ load.download = function (archiveUrl, response) {
     });
 
     res.on('end', function () {
-      console.log('download '.green + archiveUrl);
+      logger.debug('download '.green + archiveUrl);
     })
 
   });
