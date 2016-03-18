@@ -1,33 +1,24 @@
 var express = require('express');
-var fs = require('fs');
-var httpProxy = require('http-proxy');
 var colors = require('colors');
-var tools = require('./tools');
+var path = require('path');
+var load = require('./load');
+var file = require('./file');
 
 var app = express();
 
 // create cache path
-tools.init();
 
 
 app.get('/*', function (req, res) {
-  var url = req.url;
-  if (url === '' || url === '/favicon.ico') {
+  var proxyUrl = req.url;
+  if (!proxyUrl || proxyUrl === '/' || proxyUrl === '/favicon.ico') {
+    res.send('welcom http proxy server.');
     return;
   }
-  // fs.readFile('D:/FlashFXP.zip', function (err, data) {
-  //   res.send(data);
-  // });
-  tools.getFile(url, res);
+  load.download(proxyUrl.substring(1), res);
 });
 
-//
-// Create your proxy server and set the target in the options.
-//
-httpProxy.createProxyServer({
-  target: 'http://localhost:9000'
-}).listen(8000); // See (†)
-
 var server = app.listen(9000, function () {
+  file.setPath(path.join(process.cwd(), '/.cache'));
   console.log('server started in '.green + 9000);
 });
